@@ -2,9 +2,9 @@
 import abc
 import time
 
-from connect_four.logic.exceptions import InvalidMove
-from tic_tac_toe.logic.minimax import find_best_move
-from connect_four.logic.models import Checker, GameState, Move
+from connect_four_game.logic.exceptions import InvalidMove
+from connect_four_game.logic.minimax import find_best_move
+from connect_four_game.logic.models import Checker, GameState, Move
 
 class Player(metaclass=abc.ABCMeta):
     def __init__(self, checker: Checker) -> None:

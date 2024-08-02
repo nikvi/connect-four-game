@@ -5,8 +5,8 @@ import numpy as np
 import textwrap
 
 
-from connect_four.game.renderers import Renderer
-from connect_four.logic.models import GameState
+from connect_four_game.game.renderers import Renderer
+from connect_four_game.logic.models import GameState
 
 XPOS, YPOS = os.get_terminal_size()
 

@@ -2,7 +2,7 @@
 import math
 import random
 from functools import partial
-from connect_four.logic.models import Checker, GameState, Move
+from connect_four_game.logic.models import Checker, GameState, Move
 
 def find_best_move(game_state: GameState) -> Move | None:
     maximizer = game_state.current_checker

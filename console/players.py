@@ -1,7 +1,7 @@
 
-from connect_four.game.players import Player
-from connect_four.logic.exceptions import InvalidMove
-from connect_four.logic.models import GameState, Move
+from connect_four_game.game.players import Player
+from connect_four_game.logic.exceptions import InvalidMove
+from connect_four_game.logic.models import GameState, Move
 
 class ConsolePlayer(Player):
     def get_move(self, game_state: GameState) -> Move | None:

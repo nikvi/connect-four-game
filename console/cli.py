@@ -1,4 +1,4 @@
-from connect_four.game.engine import ConnectFour
+from connect_four_game.game.engine import ConnectFour
 
 from .args import parse_args
 from .renderers import ConsoleRenderer

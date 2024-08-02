@@ -2,10 +2,10 @@
 from dataclasses import dataclass
 from typing import Callable, TypeAlias
 
-from connect_four.game.players import Player
-from connect_four.game.renderers import Renderer
-from connect_four.logic.exceptions import InvalidMove
-from connect_four.logic.models import GameState, Board, Checker
+from connect_four_game.game.players import Player
+from connect_four_game.game.renderers import Renderer
+from connect_four_game.logic.exceptions import InvalidMove
+from connect_four_game.logic.models import GameState, Board, Checker
 
 ErrorHandler: TypeAlias = Callable[[Exception], None]
 

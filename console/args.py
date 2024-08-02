@@ -1,8 +1,8 @@
 
 import argparse
 
-from connect_four.game.players import  Player, RandomBotPlayer, MinimaxBotPlayer
-from connect_four.logic.models import Checker
+from connect_four_game.game.players import  Player, RandomBotPlayer, MinimaxBotPlayer
+from connect_four_game.logic.models import Checker
 
 from .players import ConsolePlayer
 

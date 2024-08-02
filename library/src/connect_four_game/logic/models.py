@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import numpy as np
 from functools import cached_property
 
-from connect_four.logic.exceptions import InvalidGameState, InvalidMove, UnknownGameScore
+from connect_four_game.logic.exceptions import InvalidGameState, InvalidMove, UnknownGameScore
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7

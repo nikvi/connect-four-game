@@ -1,7 +1,7 @@
 
 import abc
 
-from connect_four.logic.models import GameState
+from connect_four_game.logic.models import GameState
 
 class Renderer(metaclass=abc.ABCMeta):
     @abc.abstractmethod
