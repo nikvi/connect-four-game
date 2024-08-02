@@ -18,12 +18,10 @@ class ConnectFour:
             
     def __post_init__(self):
         if self.player1.checker is self.player2.checker:
-            raise ValueError("Players must use different marks")
+            raise ValueError("Players must use different checkers")
 
     def play(self, starting_checker:Checker = Checker.YELLOW) -> None:
         game_state = GameState(Board(), starting_checker)
-        if game_state is None:
-            print("oop")
         while True:
             self.renderer.render(game_state)
             if game_state.game_over:
