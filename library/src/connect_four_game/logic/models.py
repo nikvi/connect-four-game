@@ -180,10 +180,10 @@ class GameState:
         except IndexError:
             return None
     
-    def evaluate_block(block,checker:Checker) -> int:
+    def evaluate_block(self, block) -> int:
         score = 0
-        current_value = checker.value
-        opposite_value = checker.other.value
+        current_value = self.current_checker.value
+        opposite_value = self.current_checker.other.value
         if block.count(current_value) == 4:
             score += 100
         elif block.count(current_value) == 3 and block.count(0) == 1:
@@ -197,10 +197,10 @@ class GameState:
         
     # scoring heurist - random values
     # need to validate the other good positions nearby
-    def score_postion(self, checker: Checker) -> int:
+    def score_postion(self) -> int:
         score = 0
         board_pos = self.board.cells
-        checker_val = checker.value
+        checker_val = self.current_checker
 
         #score the board - center
         center_line = [int(i) for i in  list(board_pos[:, COLUMN_COUNT//2])]
@@ -212,26 +212,26 @@ class GameState:
             col_array = [int(i) for i in  list(board_pos[:, c])]
             for r in range(ROW_COUNT -3):
                 block = col_array[r:r+4]
-                score += self.evaluate_block(block, checker)
+                score += self.evaluate_block(block)
 
         #score horizontal
         for r in range(ROW_COUNT):
             row_array = [int(i) for i in list(board_pos[r,:])]
             for c in range(COLUMN_COUNT-3):
                 block = row_array[c:c+4]
-                score += self.evaluate_block(block, checker)
+                score += self.evaluate_block(block)
                     
         # score diagonal:
         for r in range(ROW_COUNT -3):
             for c in range(COLUMN_COUNT - 3):
                 block = [board_pos[r + i][c + i] for i in range(4)]
-                score += self.evaluate_block(block, checker)
+                score += self.evaluate_block(block)
 
         #score other diagonal:
         for r in range(ROW_COUNT -3):
             for c in range(COLUMN_COUNT - 3):
                 block = [board_pos[r + 3 - i][c + i] for i in range(4)]
-                score += self.evaluate_block(block, checker)
+                score += self.evaluate_block(block)
                     
         return score
 
