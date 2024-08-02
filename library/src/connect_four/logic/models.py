@@ -180,6 +180,23 @@ class GameState:
         except IndexError:
             return None
     
+    def evaluate_block(block,checker:Checker) -> int:
+        score = 0
+        current_value = checker.value
+        opposite_value = checker.other.value
+        if block.count(current_value) == 4:
+            score += 100
+        elif block.count(current_value) == 3 and block.count(0) == 1:
+            score += 5
+        elif block.count(current_value) == 2 and block.count(0) == 2:
+            score += 2
+        ## adversial
+        if block.count(opposite_value) == 3 and block.count(0) == 1:
+            score -= 4
+        return score
+        
+    # scoring heurist - random values
+    # need to validate the other good positions nearby
     def score_postion(self, checker: Checker) -> int:
         score = 0
         board_pos = self.board.cells
@@ -194,13 +211,28 @@ class GameState:
         for c in range(COLUMN_COUNT):
             col_array = [int(i) for i in  list(board_pos[:, c])]
             for r in range(ROW_COUNT -3):
-                window = col_array[r:r+4]
-                if window.count(checker_val) == 4:
-                    score += 100
+                block = col_array[r:r+4]
+                score += self.evaluate_block(block, checker)
 
         #score horizontal
-        #for r in range(ROW_COUNT):
-            #row
+        for r in range(ROW_COUNT):
+            row_array = [int(i) for i in list(board_pos[r,:])]
+            for c in range(COLUMN_COUNT-3):
+                block = row_array[c:c+4]
+                score += self.evaluate_block(block, checker)
+                    
+        # score diagonal:
+        for r in range(ROW_COUNT -3):
+            for c in range(COLUMN_COUNT - 3):
+                block = [board_pos[r + i][c + i] for i in range(4)]
+                score += self.evaluate_block(block, checker)
+
+        #score other diagonal:
+        for r in range(ROW_COUNT -3):
+            for c in range(COLUMN_COUNT - 3):
+                block = [board_pos[r + 3 - i][c + i] for i in range(4)]
+                score += self.evaluate_block(block, checker)
+                    
         return score
 
 
@@ -211,10 +243,10 @@ class GameState:
                 return 0
             # math.inf?
             if self.winner is checker:
-                return math.inf
+                return 9999999
             else:
             # -math.inf ?
-                return -math.inf
+                return -9999999
         raise UnknownGameScore("Game is not over yet.")
         
 
