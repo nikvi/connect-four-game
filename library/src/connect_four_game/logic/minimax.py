@@ -23,10 +23,7 @@ def minimax_scoring(
             next_moves =  move.after_state.possible_moves
             #selected_move:Move = random.choice(next_moves)
             for move in next_moves:
-                col = move.column_index
-                state = move.after_state
-                new_move = state.make_move_to(col)
-                new_score = minimax_scoring(new_move,depth -1, alpha, beta, False)
+                new_score = minimax_scoring(move,depth -1, alpha, beta, False)
                 if new_score > value:
                     value = new_score
                     #selected_move = new_move
@@ -38,10 +35,7 @@ def minimax_scoring(
             value = 9999999
             next_moves =  move.after_state.possible_moves
             for move in next_moves:
-                col = move.column_index
-                state = move.after_state
-                new_move = state.make_move_to(col)
-                new_score = minimax_scoring(new_move,depth -1, alpha, beta, True)
+                new_score = minimax_scoring(move,depth -1, alpha, beta, True)
                 if new_score < value:
                     value = new_score
                 beta = min(beta, value)
